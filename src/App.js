@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import InterfazEstresante from './components/InterfazEstresante';
-import InterfazAdaptada from './components/InterfazAdaptada';
+import AvisoDeEstres from './components/AvisoDeEstres';
 import { useDeteccionEstres } from './hooks/useDeteccionEstres';
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className="App">
-      {esEstresado ? <InterfazAdaptada /> : <InterfazEstresante />}
+      {esEstresado ? <AvisoDeEstres /> : <InterfazEstresante />}
     </div>
   );
 }

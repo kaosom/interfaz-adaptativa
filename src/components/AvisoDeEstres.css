@@ -1,0 +1,125 @@
+.aviso-estres {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', sans-serif;
+}
+
+.contenedor-aviso {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 60px 40px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.icono-calma {
+  margin: 0 auto 30px;
+  color: #667eea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.titulo-aviso {
+  font-size: 36px;
+  font-weight: 300;
+  color: #333;
+  margin: 0 0 20px 0;
+  letter-spacing: -0.5px;
+}
+
+.mensaje-aviso {
+  font-size: 18px;
+  color: #666;
+  line-height: 1.6;
+  margin: 0 0 40px 0;
+}
+
+.accion-principal {
+  margin-bottom: 30px;
+}
+
+.boton-principal {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  padding: 18px 50px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  min-width: 200px;
+}
+
+.boton-principal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.boton-principal:active {
+  transform: translateY(0);
+}
+
+.sugerencias {
+  padding-top: 30px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.texto-sugerencia {
+  font-size: 16px;
+  color: #999;
+  margin: 0;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .contenedor-aviso {
+    padding: 40px 30px;
+  }
+
+  .titulo-aviso {
+    font-size: 28px;
+  }
+
+  .mensaje-aviso {
+    font-size: 16px;
+  }
+
+  .boton-principal {
+    padding: 16px 40px;
+    font-size: 16px;
+    min-width: 180px;
+  }
+}
