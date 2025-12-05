@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './InterfazEstresante.css';
 
 const InterfazEstresante = () => {
@@ -24,6 +24,56 @@ const InterfazEstresante = () => {
       ...formData,
       [e.target.name]: e.target.value
     });
+  };
+
+  useEffect(() => {
+    const textInputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], textarea');
+    
+    const handleInputBackspace = (e) => {
+      if (e.key === 'Backspace') {
+        console.log('Backspace presionado en campo:', e.target.name);
+      }
+    };
+
+    textInputs.forEach(input => {
+      input.addEventListener('keydown', handleInputBackspace);
+    });
+
+    return () => {
+      textInputs.forEach(input => {
+        input.removeEventListener('keydown', handleInputBackspace);
+      });
+    };
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert('Formulario enviado. Esta es solo una demostración.');
+  };
+
+  const handleCancel = () => {
+    if (window.confirm('¿Está seguro de que desea cancelar? Se perderán todos los datos.')) {
+      setFormData({
+        nombre: '',
+        apellido: '',
+        email: '',
+        telefono: '',
+        direccion: '',
+        ciudad: '',
+        codigoPostal: '',
+        pais: '',
+        fechaNacimiento: '',
+        genero: '',
+        ocupacion: '',
+        ingresos: '',
+        referencias: '',
+        comentarios: ''
+      });
+    }
+  };
+
+  const handleSaveDraft = () => {
+    alert('Borrador guardado (simulación).');
   };
 
   return (
@@ -58,7 +108,7 @@ const InterfazEstresante = () => {
           </p>
         </div>
 
-        <form className="formulario-estresante">
+        <form className="formulario-estresante" onSubmit={handleSubmit}>
           <div className="grupo-campos">
             <div className="campo">
               <label htmlFor="nombre">Nombre *</label>
@@ -69,6 +119,7 @@ const InterfazEstresante = () => {
                 value={formData.nombre}
                 onChange={handleChange}
                 required
+                placeholder="Ej: Juan"
               />
             </div>
             <div className="campo">
@@ -80,6 +131,7 @@ const InterfazEstresante = () => {
                 value={formData.apellido}
                 onChange={handleChange}
                 required
+                placeholder="Ej: Pérez"
               />
             </div>
           </div>
@@ -94,6 +146,7 @@ const InterfazEstresante = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
+                placeholder="ejemplo@correo.com"
               />
             </div>
             <div className="campo">
@@ -105,6 +158,7 @@ const InterfazEstresante = () => {
                 value={formData.telefono}
                 onChange={handleChange}
                 required
+                placeholder="+52 123 456 7890"
               />
             </div>
           </div>
@@ -118,6 +172,7 @@ const InterfazEstresante = () => {
               value={formData.direccion}
               onChange={handleChange}
               required
+              placeholder="Calle, número, colonia"
             />
           </div>
 
@@ -131,6 +186,7 @@ const InterfazEstresante = () => {
                 value={formData.ciudad}
                 onChange={handleChange}
                 required
+                placeholder="Ej: Puebla"
               />
             </div>
             <div className="campo">
@@ -142,6 +198,7 @@ const InterfazEstresante = () => {
                 value={formData.codigoPostal}
                 onChange={handleChange}
                 required
+                placeholder="72000"
               />
             </div>
             <div className="campo">
@@ -153,6 +210,7 @@ const InterfazEstresante = () => {
                 value={formData.pais}
                 onChange={handleChange}
                 required
+                placeholder="México"
               />
             </div>
           </div>
@@ -197,6 +255,7 @@ const InterfazEstresante = () => {
                 value={formData.ocupacion}
                 onChange={handleChange}
                 required
+                placeholder="Ej: Ingeniero"
               />
             </div>
             <div className="campo">
@@ -208,6 +267,7 @@ const InterfazEstresante = () => {
                 value={formData.ingresos}
                 onChange={handleChange}
                 required
+                placeholder="Ej: $20,000 MXN"
               />
             </div>
           </div>
@@ -221,6 +281,7 @@ const InterfazEstresante = () => {
               onChange={handleChange}
               rows="4"
               required
+              placeholder="Proporcione al menos dos referencias con nombre y teléfono"
             />
           </div>
 
@@ -233,13 +294,18 @@ const InterfazEstresante = () => {
               onChange={handleChange}
               rows="6"
               required
+              placeholder="Cualquier información adicional que considere relevante..."
             />
           </div>
 
           <div className="botones-formulario">
             <button type="submit" className="boton-enviar">ENVIAR FORMULARIO</button>
-            <button type="button" className="boton-cancelar">CANCELAR</button>
-            <button type="button" className="boton-guardar">GUARDAR BORRADOR</button>
+            <button type="button" className="boton-cancelar" onClick={handleCancel}>
+              CANCELAR
+            </button>
+            <button type="button" className="boton-guardar" onClick={handleSaveDraft}>
+              GUARDAR BORRADOR
+            </button>
           </div>
         </form>
       </div>
@@ -248,4 +314,3 @@ const InterfazEstresante = () => {
 };
 
 export default InterfazEstresante;
-
